@@ -1,3 +1,8 @@
+.gitignore
+
+test.h
+test.c
+
 # Prerequisites
 *.d
 
