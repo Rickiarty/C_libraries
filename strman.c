@@ -8,7 +8,6 @@ int replace(char *src, int len, char *old, int len0, char *new, int len1, char *
     for(i=0; i<len; i++)
     {
         int i1 = 0;
-        bool found = true;
         while(*(src+i+i1) == *(old+i1))
         {
             i1++;
@@ -26,7 +25,6 @@ int replace(char *src, int len, char *old, int len0, char *new, int len1, char *
     for(index=0, i=0; index<length-1; index++, i++)
     {
         int i1 = 0;
-        bool found = true;
         while(*(src+i+i1) == *(old+i1))
         {
             i1++;
@@ -47,5 +45,6 @@ int replace(char *src, int len, char *old, int len0, char *new, int len1, char *
     }
 
     *(dest+length-1) = '\0';
+    //return length - 1;
     return length;
 }
