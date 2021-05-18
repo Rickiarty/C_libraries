@@ -193,7 +193,7 @@ int split_into_string_array(struct String str, struct String symbols, struct Str
 int padding_left_charray(char *str, int len, int p_len, char p_char, char *result)
 {
     int diff = p_len - len;
-    if(diff < 0)
+    if(diff <= 0)
     {
         return len;
     }
@@ -217,7 +217,7 @@ int padding_left(struct String str, int p_len, char p_char, struct String *resul
 int padding_right_charray(char* str, int len, int p_len, char p_char, char *result)
 {
     int diff = p_len - len;
-    if(diff < 0)
+    if(diff <= 0)
     {
         return len;
     }
