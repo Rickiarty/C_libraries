@@ -245,7 +245,7 @@ int trim_left_charray(char *origin, int len, char t_char, char *amended)
     {
         count++;
     }
-    if(count) // == 0
+    if(!count) // == 0
     {
         return len;
     }
@@ -272,7 +272,7 @@ int trim_right_charray(char *origin, int len, char t_char, char *amended)
     {
         count++;
     }
-    if(count) // == 0
+    if(!count) // == 0
     {
         return len;
     }
