@@ -14,10 +14,21 @@ int main(int argc, char** args)
     symbols.charray = " ";
     symbols.length = 1;
 
-    printf("%s\n\n", str.charray);
+    printf("main.c: original string: %s\n\n", str.charray);
+    struct String old, new, amended;
+    old.charray = "i,";
+    old.length = 2;
+    new.charray = "ello,";
+    new.length = 5;
+    amended.charray = (char*)malloc(sizeof(char) * 1);
+    amended.length = 1;
+    replace(str, old, new, &amended);
+    printf("main.c: amended string: %s\n\n", amended.charray);
 
-    split_to_two_sstruct(str, 3, &s1, &s2);
+    split_to_two_strings(str, 3, &s1, &s2);
     printf("main.c:\n\tstr: %s\n\ts1: %s\n\ts2: %s\n\n", str.charray, s1.charray, s2.charray);
+    concatenate(s1, s2, &amended);
+    printf("main.c: concatenated string: %s\n\n", amended.charray);
 
     // First, we test how many characters length of an array shall be before split a string into it. 
     int count = test_length_of_array_before_split_string(str, symbols);
