@@ -5,6 +5,9 @@ struct String {
     char *charray;
 };
 
+int copy_str(struct String, struct String *);
+int bound_string_length_charray(int, char*, int);
+int bound_string_length(int, struct String *);
 // concatenating
 int concatenate_charray(char*, int, char*, int, char*);
 int concatenate(struct String, struct String, struct String *);

@@ -1,5 +1,45 @@
 #include "strman.h"
 
+int copy_str(struct String src, struct String *dest)
+{
+    dest->charray = (char*)realloc(dest->charray, src.length + 1);
+    dest->length = src.length + 1;
+    for (int i=0; i<src.length; i++)
+    {
+        *(dest->charray + i) = *(src.charray + i);
+    }
+    *(dest->charray + dest->length - 1) = '\0';
+    return dest->length;
+}
+
+int bound_string_length_charray(int to_len, char *str, int from_len)
+{
+    if(to_len > from_len)
+    {
+        return from_len;
+    }
+    char *temp = (char*)malloc(sizeof(char) * from_len);
+    for (int i=0; i<from_len; i++) 
+    {
+        *(temp + i) = *(str + i);
+    }
+    str = (char*)realloc(str, to_len + 1);
+    for (int i=0; i<to_len; i++)
+    {
+        *(str + i) = *(temp + i);
+    }
+    *(str + to_len) = '\0';
+    free(temp);
+    return to_len;
+}
+
+int bound_string_length(int to_length, struct String *str)
+{
+    int len = bound_string_length_charray(to_length, str->charray, str->length);
+    str->length = len;
+    return str->length;
+}
+
 int concatenate_charray(char *str0, int len0, char *str1, int len1, char *result)
 {
     int length = len0 + len1;
