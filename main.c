@@ -36,7 +36,7 @@ int main(int argc, char** args)
     concatenate(s1, s2, &amended);
     printf("main.c: concatenated string: %s\n\n", amended.charray);
 
-    // First, we test how many characters length of an array shall be before split a string into it. 
+    // First, we test how many characters length of an array shall be before splitting a string into it. 
     int count = test_length_of_array_before_split_string(another_str, symbols);
     
     // init: manually allocate memory outside of function in C-lang
@@ -62,6 +62,11 @@ int main(int argc, char** args)
         free((str_arr + i)->charray);
     }
     free(str_arr);
+    
+    free(another_str.charray);
+    free(s1.charray);
+    free(s2.charray);
+    free(amended.charray);
 
     return 0; // exit code
 }
