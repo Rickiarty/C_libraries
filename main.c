@@ -32,9 +32,9 @@ int main(int argc, char** args)
     printf("main.c: bounded string: |%s|\n\n", another_str.charray);
 
     split_to_two_strings(another_str, 3, &s1, &s2);
-    printf("main.c:\n\tstr: %s\n\ts1: %s\n\ts2: %s\n\n", str.charray, s1.charray, s2.charray);
+    printf("main.c:\n\tstr: |%s|\n\ts1: |%s|\n\ts2: |%s|\n\n", str.charray, s1.charray, s2.charray);
     concatenate(s1, s2, &amended);
-    printf("main.c: concatenated string: %s\n\n", amended.charray);
+    printf("main.c: concatenated string: |%s|\n\n", amended.charray);
 
     // First, we test how many characters length of an array shall be before splitting a string into it. 
     int count = test_length_of_array_before_split_string(another_str, symbols);

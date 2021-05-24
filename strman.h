@@ -5,6 +5,7 @@ struct String {
     char *charray;
 };
 
+int copy_charray(char*, int, char*, int*);
 int copy_str(struct String, struct String *);
 int bound_string_length_charray(int, char*, int);
 int bound_string_length(int, struct String *);

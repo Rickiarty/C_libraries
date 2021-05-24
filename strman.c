@@ -1,5 +1,17 @@
 #include "strman.h"
 
+int copy_charray(char *src, int len_s, char *dest, int *len_d)
+{
+    *len_d = len_s;
+    dest = (char*)realloc(dest, (*len_d + 1) * sizeof(char));
+    for (int i=0; i<len_s; i++)
+    {
+        *(dest + i) = *(src + i);
+    }
+    *(dest + *len_d) = '\0';
+    return *len_d;
+}
+
 int copy_str(struct String src, struct String *dest)
 {
     dest->length = src.length;
@@ -52,6 +64,7 @@ int concatenate_charray(char *str0, int len0, char *str1, int len1, char *result
     {
         *(result + len0 + i) = *(str1 + i);
     }
+    length = bound_string_length_charray(length, result, length);
     return length;
 }
 
@@ -138,6 +151,9 @@ int split_to_two_strings(struct String src, int index, struct String *str0, stru
     {
         *(str1->charray + i) = *(src.charray + index + i);
     }
+
+    str0->length = bound_string_length_charray(str0->length, str0->charray, str0->length);
+    str1->length = bound_string_length_charray(str1->length, str1->charray, str1->length);
     
     //printf("strman.c:\n\tsrc: %s\n\tstr0: %s\n\tstr1: %s\n\n", src.charray, str0->charray, str1->charray); // DEBUG
     return index;
@@ -226,6 +242,11 @@ int split_into_string_array(struct String str, struct String symbols, struct Str
     free(head);
     free(tail);
     
+    for(int i=0; i<length; i++)
+    {
+        (str_array + i)->length = bound_string_length((str_array + i)->length, str_array + i);
+    }
+
     //for (int i=0; i<length; i++) printf("strman.c: %d: %s\n", i, (str_array + i)->charray); // DEBUG
     return length;
 }
