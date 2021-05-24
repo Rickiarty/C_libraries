@@ -2,13 +2,13 @@
 
 int copy_str(struct String src, struct String *dest)
 {
-    dest->charray = (char*)realloc(dest->charray, src.length + 1);
-    dest->length = src.length + 1;
+    dest->length = src.length;
+    dest->charray = (char*)realloc(dest->charray, (dest->length + 1) * sizeof(char));
     for (int i=0; i<src.length; i++)
     {
         *(dest->charray + i) = *(src.charray + i);
     }
-    *(dest->charray + dest->length - 1) = '\0';
+    *(dest->charray + dest->length) = '\0';
     return dest->length;
 }
 
@@ -23,7 +23,7 @@ int bound_string_length_charray(int to_len, char *str, int from_len)
     {
         *(temp + i) = *(str + i);
     }
-    str = (char*)realloc(str, to_len + 1);
+    str = (char*)realloc(str, (to_len + 1) * sizeof(char));
     for (int i=0; i<to_len; i++)
     {
         *(str + i) = *(temp + i);
@@ -82,7 +82,7 @@ int replace_charray(char *src, int len, char *old, int len0, char *new, int len1
     }
 
     int length = len + count * (len1 - len0);
-    dest = (char*)realloc(dest, length);
+    dest = (char*)realloc(dest, length * sizeof(char));
 
     for(index=0, i=0; index<length; index++, i++)
     {
